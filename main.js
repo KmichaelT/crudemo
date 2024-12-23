@@ -1,7 +1,3 @@
-// We will enforce a 10-digit phone number. If the cleaned phone number isn't exactly 10 digits, 
-// we won't proceed with create or update. We'll display an error message in the console for now.
-// When displaying the phone number in the table, if it's 10 digits, we'll format it as XXX-XXX-XXXX.
-
 // Get references to form and inputs
 const form = document.querySelector('form');
 const fullNameInput = document.getElementById('full-name');
@@ -16,10 +12,8 @@ const newContactEl = document.getElementById('new_contact');
 const modifiedContactEl = document.getElementById('modified_contact');
 const removedContactEl = document.getElementById('removed_contact');
 
-// Sort icon
 const sortIcon = document.getElementById('sort_icon');
 
-// Notification container
 const notificationContainer = document.querySelector('[aria-live="assertive"]');
 
 let currentContactId = null;
@@ -28,13 +22,11 @@ let newCount = 0;
 let modifiedCount = 0;
 let removedCount = 0;
 
-let fetchedContacts = []; // Store contacts fetched from backend
-let sortState = 0; // 0: original order, 1: ascending, 2: descending
+let fetchedContacts = []; 
+let sortState = 0;
 
-// Show notification
 function showSuccessNotification() {
   notificationContainer.style.display = 'flex';
-  // Hide after a few seconds
   setTimeout(() => {
     notificationContainer.style.display = 'none';
   }, 3000);
@@ -48,7 +40,7 @@ async function fetchAndRenderContacts() {
       console.error('Error fetching contacts:', response.statusText);
       return;
     }
-    fetchedContacts = await response.json(); // returns an array of contacts
+    fetchedContacts = await response.json(); 
     renderContacts(fetchedContacts);
     updateStats(fetchedContacts);
   } catch (error) {
@@ -56,19 +48,16 @@ async function fetchAndRenderContacts() {
   }
 }
 
-// Function to format phone number for display
 function formatPhone(phone) {
-  // phone should be a string of 10 digits
   if (phone.length === 10) {
     return phone.slice(0, 3) + '-' + phone.slice(3, 6) + '-' + phone.slice(6);
   }
-  return phone; // if it's not 10 digits, return as is (shouldn't happen if we enforce length)
+  return phone;
 }
 
-// Render contacts to the table
 function renderContacts(contacts) {
   const tbody = document.querySelector('tbody');
-  tbody.innerHTML = ''; // Clear existing rows
+  tbody.innerHTML = ''; 
 
   contacts.forEach(contact => {
     const row = document.createElement('tr');
@@ -80,7 +69,7 @@ function renderContacts(contacts) {
 
     const phoneCell = document.createElement('td');
     phoneCell.className = "whitespace-nowrap px-3 py-4 text-sm text-gray-500";
-    // Format the phone for display
+
     phoneCell.textContent = contact.phone ? formatPhone(contact.phone) : '';
     row.appendChild(phoneCell);
 
@@ -118,7 +107,6 @@ function renderContacts(contacts) {
   });
 }
 
-// Populate form fields for editing
 function populateForm(contact) {
   fullNameInput.value = contact.fullName || '';
   emailInput.value = contact.email || '';
@@ -128,7 +116,7 @@ function populateForm(contact) {
   document.getElementById('form_header').textContent = "Edit Contact";
 }
 
-// Validate and clean the phone number to be exactly 10 digits
+
 function getCleanedPhone() {
   const cleaned = phoneInput.value.replace(/\D/g, '');
   if (cleaned.length !== 10) {
@@ -138,12 +126,10 @@ function getCleanedPhone() {
   return cleaned;
 }
 
-// Create contact
 async function createContact() {
   const cleanedPhone = getCleanedPhone();
-  if (!cleanedPhone) return; // invalid phone, do not proceed
+  if (!cleanedPhone) return; 
 
-  // Determine new ID
   let newId = 0;
   if (fetchedContacts.length > 0) {
     const numericIds = fetchedContacts.map(c => parseInt(c.id, 10)).filter(num => !isNaN(num));
@@ -169,20 +155,19 @@ async function createContact() {
       console.error('Error creating contact:', response.statusText);
     } else {
       console.log('Contact created successfully!');
-      newCount++; // increment new contacts count
+      newCount++; 
       form.reset();
       fetchAndRenderContacts();
-      // No notification on create as requested
+     
     }
   } catch (error) {
     console.error('Network error:', error);
   }
 }
 
-// Update contact
 async function updateContact(id) {
   const cleanedPhone = getCleanedPhone();
-  if (!cleanedPhone) return; // invalid phone, do not proceed
+  if (!cleanedPhone) return; 
 
   const contactData = {
     id: id,
@@ -201,20 +186,19 @@ async function updateContact(id) {
       console.error('Error updating contact:', response.statusText);
     } else {
       console.log('Contact updated successfully!');
-      modifiedCount++; // increment modified contacts count
+      modifiedCount++; 
       currentContactId = null;
       submitButton.textContent = "Add Contact";
       form.reset();
       document.getElementById('form_header').textContent="Add a Contact";
       fetchAndRenderContacts();
-      showSuccessNotification(); // Show on update
+      showSuccessNotification(); 
     }
   } catch (error) {
     console.error('Network error:', error);
   }
 }
 
-// Delete contact
 async function deleteContact(id) {
   try {
     const response = await fetch(`https://sheetdb.io/api/v1/btgepnrddolpq/id/${id}`, {
@@ -224,16 +208,15 @@ async function deleteContact(id) {
       console.error('Error deleting contact:', response.statusText);
     } else {
       console.log('Contact deleted successfully!');
-      removedCount++; // increment removed contacts count
+      removedCount++; 
       fetchAndRenderContacts();
-      showSuccessNotification(); // Show on deletion
+      showSuccessNotification(); 
     }
   } catch (error) {
     console.error('Network error:', error);
   }
 }
 
-// Update the stats
 function updateStats(contacts) {
   const total = contacts.length;
   if (originalCount === 0) {
@@ -247,24 +230,20 @@ function updateStats(contacts) {
   removedContactEl.textContent = removedCount;
 }
 
-// Sort functionality
 sortIcon.addEventListener('click', () => {
   sortState = (sortState + 1) % 3;
-  let contactsToRender = [...fetchedContacts]; // copy original array
+  let contactsToRender = [...fetchedContacts]; 
 
   if (sortState === 1) {
-    // Ascending
     contactsToRender.sort((a, b) => (a.fullName || '').localeCompare(b.fullName || ''));
   } else if (sortState === 2) {
-    // Descending
     contactsToRender.sort((a, b) => (b.fullName || '').localeCompare(a.fullName || ''));
   }
-  // If sortState === 0, it's the original order, so we don't sort.
+
 
   renderContacts(contactsToRender);
 });
 
-// Handle form submission
 form.addEventListener('submit', function(event) {
   event.preventDefault();
   if (currentContactId !== null) {
@@ -274,8 +253,6 @@ form.addEventListener('submit', function(event) {
   }
 });
 
-// Initial fetch and render
 fetchAndRenderContacts();
 
-// Hide notification on initial load
 notificationContainer.style.display = 'none';
