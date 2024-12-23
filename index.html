@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="main.js" defer></script>
+</head>
+
+<body class="w-full bg-gray-100">
+
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <!-- Main Container -->
+
+        <!-- Header -->
+
+        <header>
+            <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+                <div class="flex lg:flex-1">
+                    <a href="#" class="-m-1.5 p-1.5">
+                        <span class="sr-only">Your Company</span>
+                        <img class="h-8 w-auto" src="image.png" alt="">
+                    </a>
+                </div>
+
+                <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                    <a href="#" class="text-sm/6 font-semibold text-gray-900">Log in <span
+                            aria-hidden="true">&rarr;</span></a>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container mx-auto p-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <!-- Full-width bottom container -->
+                <div class="md:col-span-4 rounded-xl ">
+                    <!-- Stats -->
+                    <div>
+                        <h3 class="text-base font-semibold text-gray-900">Stats</h3>
+                        <dl class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-5">
+                            <div class="overflow-hidden rounded-lg bg-white px-4 py-5 border border-gray-300 sm:p-6">
+
+                                <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900" id="total_contact">
+                                    no data</dd>
+                                <dt class="truncate text-sm font-medium text-gray-500">Total Contacts</dt>
+                            </div>
+
+                            <div class="overflow-hidden rounded-lg bg-white px-4 py-5 border border-gray-300 sm:p-6">
+
+                                <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900 "
+                                    id="original_contact">n0 data</dd>
+                                <dt class="truncate text-sm font-medium text-gray-500">Original Contacts</dt>
+                            </div>
+
+                            <div class="overflow-hidden rounded-lg bg-white px-4 py-5 border border-gray-300 sm:p-6">
+
+                                <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900" id="new_contact">
+                                    n0 data</dd>
+                                <dt class="truncate text-sm font-medium text-gray-500">New Contacts</dt>
+                            </div>
+
+                            <div class="overflow-hidden rounded-lg bg-white px-4 py-5 border border-gray-300 sm:p-6">
+
+                                <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900"
+                                    id="modified_contact">n0 data</dd>
+                                <dt class="truncate text-sm font-medium text-gray-500">Modified Contacts</dt>
+                            </div>
+
+                            <div class="overflow-hidden rounded-lg bg-white px-4 py-5 border border-gray-300 sm:p-6">
+
+                                <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900"
+                                    id="removed_contact">n0 data</dd>
+                                <dt class="truncate text-sm font-medium text-gray-500">Removed Contacts</dt>
+                            </div>
+
+                        </dl>
+                    </div>
+
+                </div>
+
+                <!-- Top-right 2x2 grid -->
+                <div class="md:col-span-1 bg-white rounded-xl grid border border-gray-300 grid-cols-1 gap-4">
+                    <!-- Top row -->
+
+                    <!-- form -->
+                    <div class="flex min-h-full flex-col max-w-2xl  px-6 py-6 lg:px-8">
+                        <div class=" sm:w-full ">
+                            <h2 class=" text-2xl/9 font-bold tracking-tight text-gray-900" id="form_header">Add a contact</h2>
+                        </div>
+
+                        <div class="mt-5 sm:w-full">
+                            <form class="space-y-2" action="#" id="form" method="POST">
+                                <div>
+                                    <label for="email" class="block text-sm/6 font-medium text-gray-900">Full
+                                        name</label>
+                                    <div class="mt-2">
+                                        <input type="text" name="full-name" id="full-name" autocomplete="given-name"
+                                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm/6 font-medium text-gray-900">Email
+                                        address</label>
+                                    <div class="mt-2">
+                                        <input type="email" name="email" id="email" autocomplete="email" required
+                                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-slate-600 sm:text-sm/6">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="phone" class="block text-sm/6 font-medium text-gray-900">Phone</label>
+                                    <div class="mt-2">
+                                        <input type="tel" name="phone" id="phone" required
+                                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-slate-600 sm:text-sm/6">
+                                    </div>
+                                </div>
+
+                                <div class="pt-5">
+                                    <button type="submit"
+                                        class="flex w-full justify-center rounded-md bg-slate-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600">
+                                        Add contact
+                                    </button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Large top-left container -->
+                <div class="md:col-span-3 bg-white border border-gray-300 rounded-xl ">
+                    <div class="px-4 sm:px-6 lg:px-8">
+
+
+                        <div class="mt-4 flow-root">
+                            <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                                    <table class="min-w-full divide-y divide-gray-300">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"
+                                                    class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
+                                                    <a href="#" class="group inline-flex items-center justify-center"
+                                                        id="sort_icon">
+                                                        Name
+                                                        <span
+                                                            class="ml-2 inline-flex items-center rounded text-gray-900 group-hover:bg-gray-200">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                viewBox="0 0 24 24" stroke-width="2"
+                                                                stroke="currentColor" class="size-3">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    d="M3 7.5 7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5" />
+                                                            </svg>
+                                                        </span>
+                                                    </a>
+
+                                                </th>
+                                                <th scope="col"
+                                                    class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                    <a href="#" class="group inline-flex">
+                                                        Phone number
+                                                        <!-- Active: "bg-gray-200 text-gray-900 group-hover:bg-gray-300", Not Active: "invisible text-gray-400 group-hover:visible group-focus:visible" -->
+
+                                                    </a>
+                                                </th>
+                                                <th scope="col"
+                                                    class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                    <a href="#" class="group inline-flex">
+                                                        Email
+                                                    </a>
+                                                </th>
+
+                                                <th scope="col"
+                                                    class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                    <a href="#" class="group inline-flex">
+                                                        Actions
+                                                        <!-- Active: "bg-gray-200 text-gray-900 group-hover:bg-gray-300", Not Active: "invisible text-gray-400 group-hover:visible group-focus:visible" -->
+                                                        <span
+                                                            class="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible">
+                                                            <svg class="invisible ml-2 size-5 flex-none rounded text-gray-400 group-hover:visible group-focus:visible"
+                                                                viewBox="0 0 20 20" fill="currentColor"
+                                                                aria-hidden="true" data-slot="icon">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                                                                    clip-rule="evenodd" />
+                                                            </svg>
+                                                        </span>
+                                                    </a>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-gray-200 bg-white">
+                                            <tr>
+                                                <td
+                                                    class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                                    no data yet</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    </div>
+    <!-- Global notification live region  -->
+    <div aria-live="assertive" class="pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6">
+        <div class="flex w-full flex-col items-center space-y-4 sm:items-end">
+            \
+            <div
+                class="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black/5">
+                <div class="p-4">
+                    <div class="flex items-start">
+                        <div class="shrink-0">
+                            <svg class="size-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" aria-hidden="true" data-slot="icon">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                        </div>
+                        <div class="ml-3 w-0 flex-1 pt-0.5">
+                            <p class="text-sm font-medium text-gray-900">Successfully saved!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
